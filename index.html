@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.51.2/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <title>News website</title>
+  </head>
+  <body class="bg-slate-50 min-h-screen" onload="fetchNewsCategory()">
+    <!-- ============Navbar======================= -->
+    <nav class="navbar bg-base-100 border-b container mx-auto w-[90%]">
+      <div class="flex-1">
+        <a class="btn btn-primary normal-case text-lg">News</a>
+        <a class="ml-3 text-primary normal-case text-xl">Portal</a>
+      </div>
+      <div class="flex-none gap-2">
+        <div class="flex gap-3">
+          <p
+            class="cursor-pointer text-primary font-semibold border-b border-primary"
+          >
+            News
+          </p>
+          <p class="cursor-pointer">Blog</p>
+        </div>
+        <div class="dropdown dropdown-end">
+          <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+            <div class="w-10 rounded-full">
+              <img src="https://picsum.photos/200/300" />
+            </div>
+          </label>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ===================HEADER================= -->
+    <header>
+      <div
+        class="container mx-auto w-[90%] flex gap-4 flex-wrap justify-center py-4"
+        id="news__category__container"
+      ></div>
+    </header>
+
+    <!-- =================================MAIN=========================== -->
+    <main>
+      <section class="container mx-auto w-[90%]">
+        <div class="bg-green-100 p-3 rounded-md shadow-sm shadow-green-100">
+          <p class="text-green-700 text-lg">
+            <span id="category__length" class="font-semibold">0</span> items
+            found for category
+            <span id="category__name" class="font-semibold"></span>
+          </p>
+        </div>
+      </section>
+
+      <section class="py-5">
+        <div class="container mx-auto w-[90%] flex justify-between flex-wrap">
+          <!-- left  -->
+          <div>
+            <p>
+              Short by view:
+              <select class="select select-success max-w-[7rem]">
+                <option disabled selected>Default</option>
+                <option>Auto</option>
+                <option>Dark mode</option>
+                <option>Light mode</option>
+              </select>
+            </p>
+          </div>
+
+          <!-- right -->
+          <div>
+            <button class="btn btn-success">Today's Pick</button>
+            <button onclick="showTrending()" class="btn btn-outline btn-success">Trending</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-5">
+        <div class="container mx-auto w-[90%]">
+          <div id="card__container" class=""></div>
+        </div>
+      </section>
+
+      <div id="modal__container">
+        <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+        <div class="modal">
+          <div class="modal-box relative">
+            <label
+              for="my-modal-3"
+              class="btn btn-sm btn-circle absolute right-2 top-2"
+              >✕</label
+            >
+            <!-- <h3 class="text-lg font-bold">
+              Congratulations random Internet user!
+            </h3>
+            <p class="py-4">
+              You've been selected for a chance to get one year of subscription
+              to use Wikipedia for free!
+            </p> -->
+
+            <div id="modal"></div>
+          </div>
+        </div>
+      </div>
+      </main>
+
+    <!-- <p
+      class="bg-green-100 text-green-700 max-w-max py-[.15rem] rounded-md font-semibold px-1"
+    >
+      ${rating.badge}
+    </p> -->
+    <script src="./app.js"></script>
+  </body>
+</html>
