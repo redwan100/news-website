@@ -23,13 +23,13 @@
     <!-- ============Navbar======================= -->
     <nav class="navbar bg-base-100 border-b container mx-auto w-[90%]">
       <div class="flex-1">
-        <a class="btn btn-primary normal-case text-lg">News</a>
-        <a class="ml-3 text-primary normal-case text-xl">Portal</a>
+        <a class="btn btn-success normal-case text-lg">News</a>
+        <a class="ml-3 text-success normal-case text-xl">Portal</a>
       </div>
       <div class="flex-none gap-2">
         <div class="flex gap-3">
           <p
-            class="cursor-pointer text-primary font-semibold border-b border-primary"
+            class="cursor-pointer text-success font-semibold border-b border-success"
           >
             News
           </p>
@@ -46,9 +46,9 @@
     </nav>
 
     <!-- ===================HEADER================= -->
-    <header>
+    <header id="header" class="transition-all w-full top-0 left-0 z-50 bg-green-50 ">
       <div
-        class="container mx-auto w-[90%] flex gap-4 flex-wrap justify-center py-4"
+        class="my-4 container mx-auto w-[90%] flex gap-4 flex-wrap justify-center py-4"
         id="news__category__container"
       ></div>
     </header>
@@ -73,16 +73,15 @@
               Short by view:
               <select class="select select-success max-w-[7rem]">
                 <option disabled selected>Default</option>
-                <option>Auto</option>
-                <option>Dark mode</option>
-                <option>Light mode</option>
+                <option>Trending</option>
+                <option>Today pick</option>
               </select>
             </p>
           </div>
 
           <!-- right -->
           <div>
-            <button class="btn btn-success">Today's Pick</button>
+            <button class="btn btn-success" onclick="showToDaysPic()">Today's Pick</button>
             <button onclick="showTrending()" class="btn btn-outline btn-success">Trending</button>
           </div>
         </div>

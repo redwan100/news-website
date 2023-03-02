@@ -1,3 +1,19 @@
+
+const headerActive = ()=>{
+  const header = document.getElementById('header')
+  let scrollTop = window.scrollY;
+   
+  if(scrollTop >= 150 ){
+    header.classList.add("fixed", "shadow-md");
+  }else{
+    header.classList.remove("fixed", "shadow-md");
+
+  }
+
+  scrollTop = undefined
+}
+window.addEventListener('scroll', headerActive)
+
 let fetchData = [];
 
 const fetchNewsCategory = async () => {
@@ -61,10 +77,7 @@ const displayAllNews = (data, categoryName) => {
                  ${title} 
                 </h2>
                 <p class="text-sm md:text-[14px]">
-                  ${details.slice(
-                    0,
-                    200
-                  )}...see more
+                  ${details.slice(0, 200)}...see more
                 </p>
 
                 <div class="grid gap-5 sm:grid-cols-2 md:grid-cols-4 items-center justify-center">
@@ -89,12 +102,12 @@ const displayAllNews = (data, categoryName) => {
                   </div>
 
                   <!-- item 3 -->
-                  <div>
+                  <div class="flex gap-1">
                    <p> 
-                   <i class="ri-star-s-fill"></i>
+                   ${ generateStars(rating.number)}
                    </p>
 
-                   
+                   <p>(${rating.number})</p>
                   </div>
 
                   <!-- item 4 -->
@@ -125,9 +138,9 @@ const singleNewsFetch = async(singleId)=>{
 
 
 const displaySingleNews = (data) =>{
+  console.log(data);
     console.log(data);
      const {
-       image_url,
        title,
        details,
        thumbnail_url,
@@ -142,12 +155,12 @@ const displaySingleNews = (data) =>{
     modalContainer.innerHTML = ''
     div.innerHTML = `
      <div class="card card-side">
-              <figure>
-                <img class="max-w-full h-auto" src=${image_url} />
-              </figure>
+              
               <div class="card-body">
                 <h2 class="card-title">
-                 ${title}<span class="w-max-content py-[3px] px-[5px] rounded-sm bg-accent text-sm">${others_info.is_trending ? 'Trending':'Not Trending'}</span>
+                 ${title}<span class="w-max-content py-[3px] px-[5px] rounded-sm bg-accent text-sm">${
+      others_info.is_trending ? "Trending" : "Not Trending"
+    }</span>
                 </h2>
                 <p class="text-sm md:text-[14px]">
                   ${details}
@@ -177,9 +190,10 @@ const displaySingleNews = (data) =>{
                   <!-- item 3 -->
                   <div>
                    <p> 
-                   <i class="ri-star-s-fill"></i>
+                   ${generateStars(rating.number)}
                    </p>
 
+                   <p>(${rating.number})</p>
                    
                   </div>
 
@@ -201,5 +215,31 @@ const displaySingleNews = (data) =>{
 
 const showTrending = () =>{
     let filtered = fetchData.filter(item=> item.others_info.is_trending === true);
-    displayAllNews(filtered, 'radndome')
+    const categoryName = document.getElementById("category__name").innerText;
+    displayAllNews(filtered, categoryName);
+}
+
+
+const showToDaysPic = () =>{
+  let filtered = fetchData.filter(
+    (item) => item.others_info.is_todays_pick === true
+  );
+  const categoryName = document.getElementById("category__name").innerText;
+  displayAllNews(filtered, categoryName);
+}
+
+
+const generateStars = (rating)=>{
+ let ratingHtml = '';
+
+ for(let i = 1; i <= Math.floor(rating); i++){
+  ratingHtml += '<i class="ri-star-s-fill"></i>';
+
+
+}
+if(rating - Math.floor(rating) > 0){
+  ratingHtml += '<i class="ri-star-half-s-fill"></i>';
+ return ratingHtml
+}
+
 }
